@@ -5,7 +5,8 @@
 
 from inspect import getsource
 from GTN import gtn
-# from calculator import calculate
+from calculator import calculate
+from . import *
 
 
 class Code():
@@ -35,7 +36,7 @@ class Code():
         which = int(input("Which code you want to run: "))
         if which == 1:
             print(" ======== Calculator =============")
-            # calculate()
+            calculate()
         
         elif which == 2:
             print(" ======== Gues The Number =============")
@@ -45,45 +46,31 @@ class Code():
         which = int(input("which: "))
         if which == 1:
             print(" ======== Calculator =============")
-            # print(getsource(calculate))
+            print(getsource(calculate))
         
         elif which == 2:
             print(" ======== Calculator =============")
             print(getsource(gtn))
+        
+        elif which == 3:
+            print(getsource())
 
     def add(self):
-        # file = open("calculator.py", "w")
-        # file.write("print('Hello World!')")
-        # file = open("GTN.py")
-        # file = open("calculator.py")
-        # content = file.read()
-        # file.close()
-        # print(content)
+        fn = input("Enter file name: ")
+        file = open(fn, 'x')
+        # =========== Multi-line input here!!
+        lines = []
+        while True:
+            line = input()
+            if line:
+                lines.append(line)
+            else:
+                break
+        code = '\n'.join(lines) # add all inputs in a list
 
-        # print(file)
-
-        file = open("demo.py", 'w')
-        lines = ["def calculate():\n", 
-                 "  num1 = int(input('Enter 1st number: '))\n",
-                 "  operator = input('Enter any operator: ')\n",
-                 "  num2 = int(input('Enter 2nd number: '))\n",
-
-                 "  if operator == '+':\n",
-                 "      print(num1 + num2)\n",
-                 "  elif operator == '-':\n",
-                 "      print(num1 - num2)\n",
-                 "  elif operator == '*':\n",
-                 "      print(num1 * num2)\n",
-                 "  elif operator == '/':\n",
-                 "      print(num1 / num2)\n"
-                ]
-        file.writelines(lines)
-        file = open("demo.py")
-        content = file.read()
-        # print(content)
-
-        fil1 = open("GTN.py")
-        print(fil1.read())
+        file.writelines(lines) # adds lines variable in file
+        file = open(fn) # open the file
+        print(code) # prints the code
 
 
 fir = Code('Python')
